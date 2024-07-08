@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Waiter Dashboard</title>
+  </head>
+  <body>
+    <header>
+      <div class="logo" (click)="goToHome()">Konobar</div>
+      <!-- <div class="buttons">
+        <button (click)="goToDeliveryView()">Deliveries</button>
+      </div> -->
+      <!-- <div class="buttons">
+        <button (click)="goToReservarionView()">Reservations</button>
+      </div> -->
+      <!-- <div class="buttons">
+        <button (click)="goToChangePassword()">Change password</button>
+      </div> -->
+      <div class="buttons">
+        <button (click)="goToProfile()">Profile</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToDeliveryOrdersWaiter()">Delivery</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToDiagrams()">Diagrams</button>
+      </div>
+      <div class="buttons">
+        <button (click)="logout()">Logout</button>
+      </div>
+      <!-- <div class="buttons">
+        <button (click)="toggleBasket()">Basket</button>
+      </div> -->
+    </header>
+    <br />
+
+    <div class="order-list">
+      <div *ngFor="let order of deliveryOrders" class="order-item">
+        <h3>Order ID: {{ order.orderId }}</h3>
+        <p><strong>Ordered When:</strong> {{ order.orderedWhen }}</p>
+        <p><strong>Ordered By:</strong> {{ order.orderedBy }}</p>
+        <p><strong>Contact Phone:</strong> {{ order.contactPhone }}</p>
+
+        <div *ngIf="order.orderDishList.length > 0">
+          <p><strong>Ordered Dishes:</strong></p>
+          <ul>
+            <li *ngFor="let dish of order.orderDishList">
+              {{ dish.amount }} x {{ dish.name }}
+            </li>
+          </ul>
+        </div>
+        <div *ngIf="order.orderDishList.length === 0">
+          <p><strong>No dishes ordered.</strong></p>
+        </div>
+
+        <div class="action-buttons">
+          <button (click)="acceptOrder(order)">Accept</button>
+          <button (click)="denyOrder(order)">Deny</button>
+          <div
+            *ngIf="acceptingOrderId === order.orderId"
+            class="accept-options"
+          >
+            <select [(ngModel)]="deliveryTime">
+              <option value="">Select delivery time frame</option>
+              <option value="20-30">20-30 minutes</option>
+              <option value="30-40">30-40 minutes</option>
+              <option value="50-60">50-60 minutes</option>
+            </select>
+            <button (click)="confirmAccept(order)">Confirm</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="footer">
+      <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+    </div>
+  </body>
+</html>

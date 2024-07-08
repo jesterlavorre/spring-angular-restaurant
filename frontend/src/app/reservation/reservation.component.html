@@ -1,0 +1,36 @@
+<form (ngSubmit)="submitReservation()">
+  <label for="numberOfGuests">Number of Guests:</label>
+  <input
+    type="number"
+    id="numberOfGuests"
+    name="numberOfGuests"
+    [(ngModel)]="reservation.numberOfGuests"
+    required
+  />
+
+  <label for="when">Date and Time:</label>
+  <input
+    type="datetime-local"
+    id="when"
+    name="when"
+    [(ngModel)]="reservation.when"
+    required
+  />
+
+  <label for="extraComment">Extra Comment:</label>
+  <textarea
+    id="extraComment"
+    name="extraComment"
+    [(ngModel)]="reservation.extraComment"
+  ></textarea>
+
+  <button type="submit">Submit Reservation</button>
+  <span class="errorClass">{{ message }}</span>
+</form>
+<br />
+<br />
+<br />
+<br />
+<div class="footer">
+  <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+</div>

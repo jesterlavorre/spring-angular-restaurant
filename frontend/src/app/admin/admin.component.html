@@ -1,0 +1,603 @@
+<header class="admin-header">
+  <div class="logo" (click)="goToHomeAdmin()">Admin Panel</div>
+  <div class="actions">
+    <button class="btn btn-primary" (click)="addRestaurant()">
+      Add Restaurant
+    </button>
+    <button class="btn btn-danger" (click)="addWaiter()">Add Waiter</button>
+    <button class="btn btn-danger" (click)="logout()">Logout</button>
+  </div>
+</header>
+
+<div class="container mt-4">
+  <!-- Waiting for Approval -->
+  <div class="container mt-4">
+    <!-- Waiting for Approval -->
+    <!-- Waiting for Approval -->
+    <div>
+      <h2>Waiting for Approval</h2>
+      <div class="row">
+        <div
+          class="col-md-6 mb-4"
+          *ngFor="let user of adminData.waitingForApproval"
+        >
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">ID: {{ user.id }}</h5>
+              <p class="card-text">Username: {{ user.username }}</p>
+              <p class="card-text">
+                Name: {{ user.firstName }} {{ user.lastName }}
+              </p>
+              <p class="card-text">Email: {{ user.email }}</p>
+              <div *ngIf="user.profilePicture" class="mb-3">
+                <img
+                  [src]="user.profilePicture"
+                  alt="Profile Picture"
+                  class="card-img-top rounded profile-img"
+                />
+              </div>
+              <p class="card-text">Address: {{ user.address }}</p>
+              <p class="card-text">Contact Phone: {{ user.contactPhone }}</p>
+              <p class="card-text">Status ID: {{ user.statusId }}</p>
+              <p class="card-text">Insert Time: {{ user.insertTime }}</p>
+              <div class="mt-3">
+                <button
+                  class="btn btn-danger mr-2"
+                  (click)="rejectUser(user.id)"
+                >
+                  Not Approved
+                </button>
+                <button class="btn btn-success" (click)="approveUser(user.id)">
+                  Approved
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Users -->
+    <div>
+      <h2>Active Users</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4" *ngFor="let user of adminData.activeUsers">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">ID: {{ user.id }}</h5>
+              <p class="card-text">Username: {{ user.username }}</p>
+              <p class="card-text">
+                Name: {{ user.firstName }} {{ user.lastName }}
+              </p>
+              <p class="card-text">Email: {{ user.email }}</p>
+
+              <p class="card-text">Address: {{ user.address }}</p>
+              <p class="card-text">Contact Phone: {{ user.contactPhone }}</p>
+              <p class="card-text">Status ID: {{ user.statusId }}</p>
+              <p class="card-text">Insert Time: {{ user.insertTime }}</p>
+              <p class="card-text">Sex: {{ user.sex }}</p>
+              <p class="card-text">Credit Card No: {{ user.creditCardNo }}</p>
+              <p class="card-text">Security Question: {{ user.securityQ }}</p>
+              <p class="card-text">Security Answer: {{ user.securityA }}</p>
+              <p class="card-text">Password: {{ user.password }}</p>
+              <p class="card-text">Password Clear: {{ user.passwordClear }}</p>
+              <div *ngIf="user.profilePicture" class="mb-3">
+                <img
+                  [src]="user.profilePicture"
+                  alt="Profile Picture"
+                  class="card-img-top rounded profile-img"
+                />
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-primary mr-2" (click)="toggleEdit(user)">
+                  {{ editingUserId === user.id ? "Close Edit" : "Edit" }}
+                </button>
+                <button class="btn btn-danger" (click)="banUser(user.id)">
+                  Deactivate
+                </button>
+              </div>
+              <div *ngIf="editingUserId === user.id" class="mt-3">
+                <form>
+                  <div class="form-group">
+                    <label for="editUsername">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editUsername"
+                      [(ngModel)]="editingUser.username"
+                      name="editUsername"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editPasswordClear">Clear Password</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editPasswordClear"
+                      [(ngModel)]="editingUser.passwordClear"
+                      name="editPasswordClear"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editPassword">Encrypted Password</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editPassword"
+                      [(ngModel)]="editingUser.password"
+                      name="editPassword"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editAccountTypeId">Account Type ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editAccountTypeId"
+                      [(ngModel)]="editingUser.accountTypeId"
+                      name="editAccountTypeId"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editSecurityQ">Security Question</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editSecurityQ"
+                      [(ngModel)]="editingUser.securityQ"
+                      name="editSecurityQ"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editSecurityA">Security Answer</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editSecurityA"
+                      [(ngModel)]="editingUser.securityA"
+                      name="editSecurityA"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editFirstName">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editFirstName"
+                      [(ngModel)]="editingUser.firstName"
+                      name="editFirstName"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editLastName">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editLastName"
+                      [(ngModel)]="editingUser.lastName"
+                      name="editLastName"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editSex">Sex</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editSex"
+                      [(ngModel)]="editingUser.sex"
+                      name="editSex"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editContactPhone">Contact Phone</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editContactPhone"
+                      [(ngModel)]="editingUser.contactPhone"
+                      name="editContactPhone"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="editEmail"
+                      [(ngModel)]="editingUser.email"
+                      name="editEmail"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editCreditCardNo">Credit Card No</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editCreditCardNo"
+                      [(ngModel)]="editingUser.creditCardNo"
+                      name="editCreditCardNo"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editAddress">Address</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editAddress"
+                      [(ngModel)]="editingUser.address"
+                      name="editAddress"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editProfilePicture">Profile Picture</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="editProfilePicture"
+                      (change)="onProfilePictureChange($event)"
+                    />
+                  </div>
+                  <!-- Display the selected profile picture -->
+                  <div *ngIf="editingUser.profilePicture" class="mb-3">
+                    <img
+                      [src]="editingUser.profilePicture"
+                      alt="New Profile Picture"
+                      class="card-img-top rounded profile-img"
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="saveChanges()"
+                  >
+                    Save Changes
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Waiters -->
+    <div>
+      <h2>Waiters</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4" *ngFor="let user of adminData.waiters">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">ID: {{ user.id }}</h5>
+              <p class="card-text">Username: {{ user.username }}</p>
+              <p class="card-text">
+                Name: {{ user.firstName }} {{ user.lastName }}
+              </p>
+              <p class="card-text">Email: {{ user.email }}</p>
+              <div *ngIf="user.profilePicture" class="mb-3">
+                <img
+                  [src]="user.profilePicture"
+                  alt="Profile Picture"
+                  class="card-img-top rounded profile-img"
+                />
+              </div>
+              <p class="card-text">Address: {{ user.address }}</p>
+              <p class="card-text">Contact Phone: {{ user.contactPhone }}</p>
+              <p class="card-text">Status ID: {{ user.statusId }}</p>
+              <p class="card-text">Insert Time: {{ user.insertTime }}</p>
+              <p class="card-text">Sex: {{ user.sex }}</p>
+              <p class="card-text">Credit Card No: {{ user.creditCardNo }}</p>
+              <p class="card-text">Security Question: {{ user.securityQ }}</p>
+              <p class="card-text">Security Answer: {{ user.securityA }}</p>
+              <p class="card-text">Password: {{ user.password }}</p>
+              <p class="card-text">Password Clear: {{ user.passwordClear }}</p>
+              <div class="mt-3">
+                <button class="btn btn-primary mr-2" (click)="toggleEdit(user)">
+                  {{ editingUserId === user.id ? "Close Edit" : "Edit" }}
+                </button>
+                <button class="btn btn-danger" (click)="banUser(user.id)">
+                  Deactivate
+                </button>
+              </div>
+              <div *ngIf="editingUserId === user.id" class="mt-3">
+                <form>
+                  <div class="form-group">
+                    <label for="editUsername">Username</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editUsername"
+                      [(ngModel)]="editingUser.username"
+                      name="editUsername"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editPasswordClear">Clear Password</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editPasswordClear"
+                      [(ngModel)]="editingUser.passwordClear"
+                      name="editPasswordClear"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editPassword">Encrypted Password</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editPassword"
+                      [(ngModel)]="editingUser.password"
+                      name="editPassword"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editAccountTypeId">Account Type ID</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editAccountTypeId"
+                      [(ngModel)]="editingUser.accountTypeId"
+                      name="editAccountTypeId"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editSecurityQ">Security Question</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editSecurityQ"
+                      [(ngModel)]="editingUser.securityQ"
+                      name="editSecurityQ"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editSecurityA">Security Answer</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editSecurityA"
+                      [(ngModel)]="editingUser.securityA"
+                      name="editSecurityA"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editFirstName">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editFirstName"
+                      [(ngModel)]="editingUser.firstName"
+                      name="editFirstName"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editLastName">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editLastName"
+                      [(ngModel)]="editingUser.lastName"
+                      name="editLastName"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editSex">Sex</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editSex"
+                      [(ngModel)]="editingUser.sex"
+                      name="editSex"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editContactPhone">Contact Phone</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editContactPhone"
+                      [(ngModel)]="editingUser.contactPhone"
+                      name="editContactPhone"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editEmail">Email</label>
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="editEmail"
+                      [(ngModel)]="editingUser.email"
+                      name="editEmail"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editAddress">Address</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editAddress"
+                      [(ngModel)]="editingUser.address"
+                      name="editAddress"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editCreditCardNo">Credit Card No</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="editCreditCardNo"
+                      [(ngModel)]="editingUser.creditCardNo"
+                      name="editCreditCardNo"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label for="editProfilePicture">Profile Picture</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="editProfilePicture"
+                      (change)="onProfilePictureChange($event)"
+                    />
+                  </div>
+                  <!-- Display the selected profile picture -->
+                  <div *ngIf="editingUser.profilePicture" class="mb-3">
+                    <img
+                      [src]="editingUser.profilePicture"
+                      alt="New Profile Picture"
+                      class="card-img-top rounded profile-img"
+                    />
+                  </div>
+
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="saveChanges()"
+                  >
+                    Save Changes
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- admin.component.html -->
+
+    <div>
+      <h2>Restaurants</h2>
+      <div class="row">
+        <div
+          class="col-md-6 mb-4"
+          *ngFor="let restaurant of adminData.restaurants"
+        >
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">ID: {{ restaurant.id }}</h5>
+              <p class="card-text">Name: {{ restaurant.name }}</p>
+              <p class="card-text">Type: {{ restaurant.type }}</p>
+              <p class="card-text">
+                Short Description: {{ restaurant.shortDescription }}
+              </p>
+              <p class="card-text">
+                Phone Number: {{ restaurant.phoneNumber }}
+              </p>
+              <p class="card-text">Address: {{ restaurant.address }}</p>
+              <p class="card-text">
+                Max Number of People: {{ restaurant.maxNumberOfPeople }}
+              </p>
+              <p class="card-text">Opens At: {{ restaurant.opensAt }}</p>
+              <p class="card-text">Closes At: {{ restaurant.closesAt }}</p>
+
+              <!-- Editable Layout -->
+              <div
+                *ngIf="
+                  editingRestaurant && editingRestaurant.id === restaurant.id
+                "
+              >
+                <label for="layoutInput">Layout:</label>
+                <input
+                  id="layoutInput"
+                  type="file"
+                  (change)="onLayoutFileChange($event)"
+                />
+              </div>
+              <!-- Display Layout -->
+              <div
+                *ngIf="
+                  !(editingRestaurant && editingRestaurant.id === restaurant.id)
+                "
+              >
+                <p>Layout: {{ restaurant.layout }}</p>
+              </div>
+
+              <!-- Editable Operating Hours -->
+              <div
+                *ngIf="
+                  editingRestaurant && editingRestaurant.id === restaurant.id
+                "
+              >
+                <label>Operating hours:</label>
+                <ul>
+                  <li
+                    *ngFor="
+                      let hours of editingRestaurant.operationgHours;
+                      let i = index
+                    "
+                  >
+                    <div>
+                      <strong>{{ hours.dayOfWeek }}</strong
+                      >:
+                      <input
+                        type="text"
+                        [(ngModel)]="
+                          editingRestaurant.operationgHours[i].opensAt
+                        "
+                        (change)="onOperatingHoursChange($event, i, 'opensAt')"
+                      />
+                      -
+                      <input
+                        type="text"
+                        [(ngModel)]="
+                          editingRestaurant.operationgHours[i].closesAt
+                        "
+                        (change)="onOperatingHoursChange($event, i, 'closesAt')"
+                      />
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Display Operating Hours -->
+              <div
+                *ngIf="
+                  !(editingRestaurant && editingRestaurant.id === restaurant.id)
+                "
+              >
+                <p>Operating hours:</p>
+                <ul>
+                  <li *ngFor="let hours of restaurant.operationgHours">
+                    <strong>{{ hours.dayOfWeek }}</strong
+                    >: {{ hours.opensAt }} - {{ hours.closesAt }}
+                  </li>
+                </ul>
+              </div>
+
+              <!-- Edit and Save Buttons -->
+              <div>
+                <button
+                  class="btn btn-primary"
+                  (click)="toggleEdit1(restaurant)"
+                >
+                  Edit
+                </button>
+                <button
+                  class="btn btn-success"
+                  *ngIf="
+                    editingRestaurant && editingRestaurant.id === restaurant.id
+                  "
+                  (click)="saveChanges1()"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicator for Edited Restaurant -->
+    <div *ngIf="editingRestaurant">
+      <p>Currently editing restaurant ID: {{ editingRestaurant.id }}</p>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div class="footer">
+  <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+</div>

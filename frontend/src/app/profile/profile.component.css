@@ -1,0 +1,153 @@
+/* Header Styles */
+header {
+  background-color: #333;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo Styles */
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Header Button Styles */
+header .buttons {
+  display: flex;
+  gap: 10px;
+}
+
+header .buttons button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+header .buttons button:hover {
+  background-color: #777;
+}
+
+/* Main Content Styles */
+main {
+  padding: 20px;
+}
+
+/* User Info Section Styles */
+.user-info {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.user-info p {
+  margin-bottom: 10px;
+}
+
+.user-info img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+/* Update Button Styles */
+.update-button {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+  margin-right: 10px;
+}
+
+.update-button:hover {
+  background-color: #0056b3;
+}
+
+/* Edit Form Styles */
+.edit-form {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.edit-form label {
+  font-weight: bold;
+}
+
+.edit-form input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.edit-form button {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 10px;
+}
+
+.edit-form button:hover {
+  background-color: #218838;
+}
+
+/* Error Message Styles */
+.errorClass {
+  color: red;
+}
+
+/* Media Queries for Responsiveness */
+@media screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  .logo {
+    font-size: 1.2rem; /* Decrease logo font size on smaller screens */
+  }
+
+  .buttons {
+    flex-wrap: wrap; /* Allow buttons to wrap onto the next line */
+    justify-content: center; /* Center align buttons */
+  }
+
+  .buttons button {
+    margin-bottom: 10px; /* Add bottom margin to buttons for spacing */
+  }
+}
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer p {
+  margin: 0;
+}

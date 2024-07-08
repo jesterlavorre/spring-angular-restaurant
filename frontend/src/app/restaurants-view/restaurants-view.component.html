@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Restaurant Info</title>
+    <base href="/" />
+  </head>
+  <body>
+    <header>
+      <div class="roc-logo" (click)="goToHome()">Restaurant of cringe</div>
+      <div class="roc-buttons">
+        <button (click)="goToDeliveryView()">Deliveries</button>
+      </div>
+      <div class="roc-buttons">
+        <button (click)="goToReservarionView()">Reservations</button>
+      </div>
+      <div class="roc-buttons">
+        <button (click)="goToChangePassword()">Change password</button>
+      </div>
+      <div class="roc-buttons">
+        <button (click)="goToProfile()">Profile</button>
+      </div>
+      <!-- <div class="roc-buttons">
+        <button (click)="goToRestaurants()">Restaurants</button>
+      </div> -->
+      <div class="roc-buttons">
+        <button (click)="logout()">Logout</button>
+      </div>
+      <div class="roc-buttons">
+        <button (click)="toggleBasket()">Basket</button>
+      </div>
+    </header>
+    <div class="restaurant-info" *ngIf="restaurantInfo">
+      <h1 class="restaurant-name">{{ restaurantInfo.restaurant.name }}</h1>
+      <div class="button-container">
+        <button (click)="goToOrderFood()">Order Food</button>
+        <button (click)="toggleBasket()">Basket</button>
+      </div>
+
+      <p><strong>Address:</strong> {{ restaurantInfo.restaurant.address }}</p>
+      <p><strong>Type:</strong> {{ restaurantInfo.restaurant.type }}</p>
+      <p>
+        <strong>Phone Number:</strong>
+        {{ restaurantInfo.restaurant.phoneNumber }}
+      </p>
+
+      <h2>Comments</h2>
+      <div class="comments">
+        <div *ngFor="let comment of restaurantInfo.comments" class="comment">
+          <p><strong>Comment by:</strong> {{ comment.commentBy }}</p>
+          <p><strong>Time:</strong> {{ comment.insertTime }}</p>
+          <p><strong>Rating:</strong> {{ comment.rating }}</p>
+          <p><strong>Text:</strong> {{ comment.text }}</p>
+        </div>
+      </div>
+      <div [innerHTML]="iframeHtml"></div>
+    </div>
+    <app-reservation></app-reservation>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="footer">
+      <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+    </div>
+  </body>
+</html>

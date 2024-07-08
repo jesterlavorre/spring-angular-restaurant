@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservations</title>
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <div class="logo" (click)="goToHome()">Restaurant of cringe</div>
+      <div class="buttons">
+        <button (click)="goToDeliveryView()">Deliveries</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToReservarionView()">Reservations</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToChangePassword()">Change password</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToProfile()">Profile</button>
+      </div>
+      <!-- <div class="buttons">
+          <button (click)="goToRestaurants()">Restaurants</button>
+        </div> -->
+      <div class="buttons">
+        <button (click)="logout()">Logout</button>
+      </div>
+      <div class="buttons">
+        <button (click)="toggleBasket()">Basket</button>
+      </div>
+    </header>
+    <div>
+      <h2>Active Reservations</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Made By</th>
+            <th>For Restaurant</th>
+            <th>Extra Comment</th>
+            <th>Number of Guests</th>
+            <th>When</th>
+            <th>Comment</th>
+            <th>Made reservation when</th>
+            <th>Restaurant address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservation of this.resView.activeReservations">
+            <td>{{ reservation.madeBy }}</td>
+            <td>{{ reservation.forRestaurant }}</td>
+            <td>{{ reservation.extraComment }}</td>
+            <td>{{ reservation.numberOfGuests }}</td>
+            <td>{{ reservation.when }}</td>
+            <td>{{ reservation.comment }}</td>
+            <td>{{ reservation.insertTime }}</td>
+            <td>{{ reservation.address }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Finished Reservations</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Made By</th>
+            <th>For Restaurant</th>
+            <th>Extra Comment</th>
+            <th>Number of Guests</th>
+            <th>When</th>
+            <th>Comment</th>
+            <th>Made reservation when</th>
+            <th>Restaurant address</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let reservation of this.resView.finishedReservations">
+            <td>{{ reservation.madeBy }}</td>
+            <td>{{ reservation.forRestaurant }}</td>
+            <td>{{ reservation.extraComment }}</td>
+            <td>{{ reservation.numberOfGuests }}</td>
+            <td>{{ reservation.when }}</td>
+            <td>{{ reservation.comment }}</td>
+            <td>{{ reservation.insertTime }}</td>
+            <td>{{ reservation.address }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <br />
+      <br />
+      <br />
+      <div class="footer">
+        <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>

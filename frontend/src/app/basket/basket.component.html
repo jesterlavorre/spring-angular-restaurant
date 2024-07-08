@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orders</title>
+    <base href="/" />
+  </head>
+  <body>
+    <header>
+      <div class="logo" (click)="goToHome()">Restaurant of cringe</div>
+      <div class="buttons">
+        <button (click)="goToDeliveryView()">Deliveries</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToReservarionView()">Reservations</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToChangePassword()">Change password</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToProfile()">Profile</button>
+      </div>
+      <!-- <div class="buttons">
+      <button (click)="goToRestaurants()">Restaurants</button>
+    </div> -->
+      <div class="buttons">
+        <button (click)="logout()">Logout</button>
+      </div>
+      <div class="buttons">
+        <button (click)="toggleBasket()">Basket</button>
+      </div>
+    </header>
+    <div class="orders-container">
+      <h1>Orders</h1>
+      <div *ngFor="let order of this.services.order" class="order-card">
+        <p><strong>Username:</strong> {{ order.madeByUsername }}</p>
+        <p><strong>Dish ID:</strong> {{ order.dishId }}</p>
+        <p><strong>Amount:</strong> {{ order.amount }}</p>
+        <p><strong>Restaurant ID:</strong> {{ order.restaurantId }}</p>
+        <p><strong>Restaurant Name:</strong> {{ order.restaurantName }}</p>
+      </div>
+    </div>
+
+    <div class="place-order-section">
+      <button (click)="placeOrder()">PLACE AN ORDER</button>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="footer">
+      <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+    </div>
+  </body>
+</html>

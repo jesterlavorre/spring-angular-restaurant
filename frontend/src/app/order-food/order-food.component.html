@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dishes</title>
+    <base href="/" />
+  </head>
+  <body>
+    <header>
+      <div class="logo" (click)="goToHome()">Restaurant of cringe</div>
+      <div class="buttons">
+        <button (click)="goToDeliveryView()">Deliveries</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToReservarionView()">Reservations</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToChangePassword()">Change password</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToProfile()">Profile</button>
+      </div>
+      <!-- <div class="buttons">
+          <button (click)="goToRestaurants()">Restaurants</button>
+        </div> -->
+      <div class="buttons">
+        <button (click)="logout()">Logout</button>
+      </div>
+      <div class="buttons">
+        <button (click)="toggleBasket()">Basket</button>
+      </div>
+    </header>
+
+    <div class="dishes-container">
+      <div class="dish-card" *ngFor="let dish of allDishes">
+        <h2>{{ dish.name }}</h2>
+        <img [src]="dish.picture" alt="{{ dish.name }}" class="dish-image" />
+        <p><strong>Price:</strong> {{ dish.price }}</p>
+        <p><strong>Ingredients:</strong></p>
+        <ul>
+          <li *ngFor="let ingredient of dish.ingredients">
+            {{ ingredient.name }} - {{ ingredient.amount }}
+          </li>
+        </ul>
+        <div class="order-section">
+          <input
+            type="text"
+            [(ngModel)]="dish.orderAmount"
+            placeholder="Enter amount"
+          />
+          <button (click)="orderDish(dish.id)">Order</button>
+        </div>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="footer">
+      <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+    </div>
+  </body>
+</html>

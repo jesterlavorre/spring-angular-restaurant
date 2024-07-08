@@ -1,0 +1,64 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+header .buttons {
+  display: flex;
+  gap: 10px;
+}
+
+header .buttons button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+header .buttons button:hover {
+  background-color: #777;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+  }
+  .logo {
+    font-size: 1.2rem; /* Decrease logo font size on smaller screens */
+  }
+
+  .buttons {
+    flex-wrap: wrap; /* Allow buttons to wrap onto the next line */
+    justify-content: center; /* Center align buttons */
+  }
+
+  .buttons button {
+    margin-bottom: 10px; /* Add bottom margin to buttons for spacing */
+  }
+}
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer p {
+  margin: 0;
+}

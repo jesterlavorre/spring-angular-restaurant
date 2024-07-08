@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Page with Header</title>
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <div class="logo" (click)="goToHome()">Restaurant of cringe</div>
+      <div class="buttons">
+        <button (click)="goToDeliveryView()">Deliveries</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToReservarionView()">Reservations</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToChangePassword()">Change password</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToProfile()">Profile</button>
+      </div>
+      <!-- <div class="buttons">
+        <button (click)="goToRestaurants()">Restaurants</button>
+      </div> -->
+      <div class="buttons">
+        <button (click)="logout()">Logout</button>
+      </div>
+      <div class="buttons">
+        <button (click)="toggleBasket()">Basket</button>
+      </div>
+    </header>
+    <div class="delivery-list">
+      <div *ngFor="let delivery of deliveryView" class="delivery-item">
+        <h3>{{ delivery.restaurantName }}</h3>
+        <p><strong>Delivery Placed:</strong> {{ delivery.deliveryPlaced }}</p>
+        <p><strong>Status:</strong> {{ delivery.status }}</p>
+        <p>
+          <strong>Estimated Delivery:</strong> {{ delivery.estimatedDelivery }}
+        </p>
+        <p><strong>Actual Delivery:</strong> {{ delivery.actualDelivery }}</p>
+      </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="footer">
+      <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+    </div>
+  </body>
+</html>

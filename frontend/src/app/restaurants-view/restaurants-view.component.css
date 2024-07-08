@@ -1,0 +1,113 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+/* Container Styles */
+.restaurant-info {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+/* Heading Styles */
+.restaurant-info h1 {
+  text-align: center;
+  color: #333;
+  margin-top: 0;
+}
+
+/* Paragraph Styles */
+.restaurant-info p {
+  margin: 10px 0;
+  color: #555;
+}
+
+/* Comments Section Styles */
+.restaurant-info .comments {
+  margin-top: 20px;
+}
+
+.restaurant-info .comment {
+  border-bottom: 1px solid #ddd;
+  padding: 10px 0;
+}
+
+.restaurant-info .comment p {
+  margin: 5px 0;
+}
+
+.restaurant-info .comment:last-child {
+  border-bottom: none;
+}
+
+/* Map Styles */
+#map {
+  height: 400px; /* Adjust height as needed */
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+header .roc-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+header .roc-buttons button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+header .roc-buttons button:hover {
+  background-color: #777;
+}
+
+/* Button Container Styles */
+.button-container {
+  margin-left: auto;
+}
+
+.button-container button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.button-container button:hover {
+  background-color: #45a049;
+}
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer p {
+  margin: 0;
+}

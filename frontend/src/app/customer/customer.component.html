@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Page with Header</title>
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">Restaurant of cringe</div>
+      <div class="buttons">
+        <button (click)="goToDeliveryView()">Deliveries</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToReservarionView()">Reservations</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToChangePassword()">Change password</button>
+      </div>
+      <div class="buttons">
+        <button (click)="goToProfile()">Profile</button>
+      </div>
+      <!-- <div class="buttons">
+        <button (click)="goToRestaurants()">Restaurants</button>
+      </div> -->
+      <div class="buttons">
+        <button (click)="logout()">Logout</button>
+      </div>
+      <div class="buttons">
+        <button (click)="toggleBasket()">Basket</button>
+      </div>
+    </header>
+    <div *ngIf="services.homeData">
+      <div class="summary">
+        <p>
+          Number of Restaurants: {{ services.homeData.numberOfRestaurants }}
+        </p>
+        <p>
+          Number of Registered Users:
+          {{ services.homeData.numberOfRegisteredUsers }}
+        </p>
+        <p>
+          Number of Waiting Users: {{ services.homeData.numberOfWaitingUsers }}
+        </p>
+        <p>
+          Number of Reservations (last 24h):
+          {{ services.homeData.numberOfReservations24h }}
+        </p>
+        <p>
+          Number of Reservations (last 7 days):
+          {{ services.homeData.numberOfReservations7d }}
+        </p>
+        <p>
+          Number of Reservations (last 30 days):
+          {{ services.homeData.numberOfReservations30d }}
+        </p>
+      </div>
+
+      <main>
+        <h2>List of Restaurants</h2>
+        <div class="search-bars">
+          <input
+            type="text"
+            placeholder="Search by Name"
+            [(ngModel)]="searchName"
+          />
+          <input
+            type="text"
+            placeholder="Search by Address"
+            [(ngModel)]="searchAddress"
+          />
+          <input
+            type="text"
+            placeholder="Search by Type"
+            [(ngModel)]="searchType"
+          />
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th (click)="toggleSort('id')">ID</th>
+              <th (click)="toggleSort('name')">Name</th>
+              <th (click)="toggleSort('address')">Address</th>
+              <th (click)="toggleSort('type')">Type</th>
+              <th (click)="toggleSort('rated')">Rating</th>
+              <th>Waiters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let restaurant of filteredRestaurants()">
+              <td>{{ restaurant.id }}</td>
+              <td>
+                <span
+                  class="clickable"
+                  (click)="goToRestaurantDetails(restaurant.id)"
+                >
+                  {{ restaurant.name }}
+                </span>
+              </td>
+              <td>{{ restaurant.address }}</td>
+              <td>{{ restaurant.type }}</td>
+              <td>
+                <table class="ratings-table">
+                  <tr>
+                    <td class="rating-cell">
+                      <ng-container
+                        *ngIf="getStarsArray(restaurant.rated).length === 0"
+                      >
+                        <span>No ratings yet</span>
+                      </ng-container>
+                      <ng-container
+                        *ngIf="getStarsArray(restaurant.rated).length > 0"
+                      >
+                        <div class="rating">
+                          <span
+                            *ngFor="let star of getStarsArray(restaurant.rated)"
+                          >
+                            <span></span>
+                          </span>
+                        </div>
+                      </ng-container>
+                    </td>
+                    <td class="rating-value">
+                      <p>{{ restaurant.rated }}</p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+              <td>
+                <ul>
+                  <li *ngFor="let waiter of restaurant.waiters">
+                    {{ waiter.firstName }} {{ waiter.lastName }}
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="footer">
+      <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+    </div>
+  </body>
+</html>

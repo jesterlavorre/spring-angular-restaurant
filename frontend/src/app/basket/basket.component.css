@@ -1,0 +1,117 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* Header Styles */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+}
+
+header .buttons {
+  display: flex;
+  gap: 10px;
+}
+
+header .buttons button {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+header .buttons button:hover {
+  background-color: #777;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Main Content Styles */
+main {
+  padding: 20px;
+}
+
+/* Orders Container */
+.orders-container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Order Card */
+.order-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.order-card p {
+  margin: 5px 0;
+}
+
+/* Place Order Section */
+.place-order-section {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.place-order-section button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.place-order-section button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .orders-container {
+    width: 90%;
+  }
+
+  .order-card {
+    padding: 10px;
+  }
+
+  .place-order-section {
+    margin-top: 10px;
+  }
+
+  .place-order-section button {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}
+.footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.footer p {
+  margin: 0;
+}

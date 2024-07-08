@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Page with Header</title>
+    <style></style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">Restaurant of cringe</div>
+      <div class="buttons">
+        <button (click)="goToLogin()">Login</button>
+        <button (click)="goToRegister()">Register</button>
+      </div>
+    </header>
+    <!-- home.component.html -->
+
+    <div *ngIf="services.homeData">
+      <div class="summary">
+        <p>
+          Number of Restaurants: {{ services.homeData.numberOfRestaurants }}
+        </p>
+        <p>
+          Number of Registered Users:
+          {{ services.homeData.numberOfRegisteredUsers }}
+        </p>
+        <p>
+          Number of Waiting Users: {{ services.homeData.numberOfWaitingUsers }}
+        </p>
+        <p>
+          Number of Reservations (last 24h):
+          {{ services.homeData.numberOfReservations24h }}
+        </p>
+        <p>
+          Number of Reservations (last 7 days):
+          {{ services.homeData.numberOfReservations7d }}
+        </p>
+        <p>
+          Number of Reservations (last 30 days):
+          {{ services.homeData.numberOfReservations30d }}
+        </p>
+      </div>
+
+      <main>
+        <h2>List of Restaurants</h2>
+        <div class="search-bars">
+          <input
+            type="text"
+            placeholder="Search by Name"
+            [(ngModel)]="searchName"
+          />
+          <input
+            type="text"
+            placeholder="Search by Address"
+            [(ngModel)]="searchAddress"
+          />
+          <input
+            type="text"
+            placeholder="Search by Type"
+            [(ngModel)]="searchType"
+          />
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th (click)="toggleSort('id')">
+                ID
+                <span
+                  class="sort-icon"
+                  [ngClass]="{
+                    asc: sortColumn === 'id' && sortDirection === 'asc',
+                    desc: sortColumn === 'id' && sortDirection === 'desc'
+                  }"
+                ></span>
+              </th>
+              <th (click)="toggleSort('name')">
+                Name
+                <span
+                  class="sort-icon"
+                  [ngClass]="{
+                    asc: sortColumn === 'name' && sortDirection === 'asc',
+                    desc: sortColumn === 'name' && sortDirection === 'desc'
+                  }"
+                ></span>
+              </th>
+              <th (click)="toggleSort('address')">
+                Address
+                <span
+                  class="sort-icon"
+                  [ngClass]="{
+                    asc: sortColumn === 'address' && sortDirection === 'asc',
+                    desc: sortColumn === 'address' && sortDirection === 'desc'
+                  }"
+                ></span>
+              </th>
+              <th (click)="toggleSort('type')">
+                Type
+                <span
+                  class="sort-icon"
+                  [ngClass]="{
+                    asc: sortColumn === 'type' && sortDirection === 'asc',
+                    desc: sortColumn === 'type' && sortDirection === 'desc'
+                  }"
+                ></span>
+              </th>
+              <th>Waiters</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let restaurant of filteredRestaurants()">
+              <td>{{ restaurant.id }}</td>
+              <td>{{ restaurant.name }}</td>
+              <td>{{ restaurant.address }}</td>
+              <td>{{ restaurant.type }}</td>
+              <td>
+                <ul>
+                  <li *ngFor="let waiter of restaurant.waiters">
+                    {{ waiter.firstName }} {{ waiter.lastName }}
+                  </li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="footer">
+      <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+    </div>
+  </body>
+</html>

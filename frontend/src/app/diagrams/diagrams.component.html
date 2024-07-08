@@ -1,0 +1,45 @@
+<header>
+  <div class="logo" (click)="goToHome()">Konobar</div>
+  <!-- <div class="buttons">
+    <button (click)="goToDeliveryView()">Deliveries</button>
+  </div> -->
+  <!-- <div class="buttons">
+    <button (click)="goToReservarionView()">Reservations</button>
+  </div> -->
+  <!-- <div class="buttons">
+    <button (click)="goToChangePassword()">Change password</button>
+  </div> -->
+  <div class="buttons">
+    <button (click)="goToProfile()">Profile</button>
+  </div>
+  <div class="buttons">
+    <button (click)="goToDeliveryOrdersWaiter()">Delivery</button>
+  </div>
+  <div class="buttons">
+    <button (click)="goToDiagrams()">Diagrams</button>
+  </div>
+  <div class="buttons">
+    <button (click)="logout()">Logout</button>
+  </div>
+  <!-- <div class="buttons">
+    <button (click)="toggleBasket()">Basket</button>
+  </div> -->
+</header>
+<div style="display: flex; flex-direction: column; align-items: center">
+  <div style="width: 80%; margin-bottom: 20px">
+    <canvas id="barCanvas" width="400" height="400"></canvas>
+  </div>
+  <div style="width: 80%; margin-bottom: 20px">
+    <canvas id="pieCanvas" width="400" height="400"></canvas>
+  </div>
+  <div style="width: 80%">
+    <canvas id="histogramCanvas" width="400" height="400"></canvas>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div class="footer">
+  <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+</div>

@@ -1,0 +1,86 @@
+<header>
+  <div class="logo" (click)="goToHome()">Konobar</div>
+  <!-- <div class="buttons">
+    <button (click)="goToDeliveryView()">Deliveries</button>
+  </div> -->
+  <!-- <div class="buttons">
+    <button (click)="goToReservarionView()">Reservations</button>
+  </div> -->
+  <!-- <div class="buttons">
+    <button (click)="goToChangePassword()">Change password</button>
+  </div> -->
+  <div class="buttons">
+    <button (click)="goToProfile()">Profile</button>
+  </div>
+  <div class="buttons">
+    <button (click)="goToDeliveryOrdersWaiter()">Delivery</button>
+  </div>
+  <div class="buttons">
+    <button (click)="goToDiagrams()">Diagrams</button>
+  </div>
+  <div class="buttons">
+    <button (click)="logout()">Logout</button>
+  </div>
+  <!-- <div class="buttons">
+    <button (click)="toggleBasket()">Basket</button>
+  </div> -->
+</header>
+<br />
+<canvas #restaurantCanvas style="border: 1px solid #000000"></canvas>
+<div class="reservation-list">
+  <div *ngFor="let reservation of waiterReservations" class="reservation-item">
+    <h3>Reservation ID: {{ reservation.id }}</h3>
+    <p><strong>Number of Guests:</strong> {{ reservation.numberOfGuests }}</p>
+    <p><strong>Made When:</strong> {{ reservation.madeWhen }}</p>
+    <p>
+      <strong>Customer Comment:</strong> {{ reservation.customerExtraComment }}
+    </p>
+    <p><strong>Arrive When:</strong> {{ reservation.arriveWhen }}</p>
+    <p><strong>Status:</strong> {{ reservation.status }}</p>
+
+    <div>
+      <label for="table-select-{{ reservation.id }}">Select Table:</label>
+      <select
+        id="table-select-{{ reservation.id }}"
+        [(ngModel)]="this.services.selectedTable[reservation.id]"
+      >
+        <option
+          *ngFor="let table of getAvailableTables()"
+          [value]="table.number"
+        >
+          {{ table.number }}
+        </option>
+      </select>
+    </div>
+
+    <div class="action-buttons">
+      <button (click)="acceptReservation(reservation.id)">Accept</button>
+      <button (click)="toggleDenyReason(reservation.id)">Deny</button>
+      <button (click)="customerDidNotShowUp(reservation.id)">
+        Customer Did Not Show Up
+      </button>
+      <button (click)="customerShowedUp(reservation.id)">
+        Customer Showed Up
+      </button>
+      <button (click)="customerHasLeft(reservation.id)">
+        Customer Has Left
+      </button>
+    </div>
+
+    <div *ngIf="denyingReservationId === reservation.id" class="deny-reason">
+      <input
+        type="text"
+        placeholder="Reason for denial"
+        [(ngModel)]="denyReason"
+      />
+      <button (click)="denyReservation(reservation.id)">Submit</button>
+    </div>
+  </div>
+</div>
+<br />
+<br />
+<br />
+<br />
+<div class="footer">
+  <p>&copy; 2024 pravi majstor. All rights reserved.</p>
+</div>
